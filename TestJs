@@ -1,0 +1,38 @@
+const students = ['Eden','Refael','Yoni', 'Nitzan','Hadas'];
+const attendees = [['Eden', 'Refael', 'Yoni', 'Nitzan', 'Hadas', 'Ortal'],
+['Berry', 'Nitzan', 'Yoni', 'Eden', 'Hadas', 'Ortal'],
+['Maxim', 'Ortal', 'Yoni', 'Refael', 'Nitzan', 'Alex'],
+['Eden', 'Andrew', 'Yoni', 'Nitzan', 'Ortal','Nitzan']];
+
+
+const topNStudentsAttendees = (students, attendees, N) => {
+    const myMap = new Map();
+    var count;
+    var topNStudentsAttendees = new Array();
+
+    students.forEach(student => {
+        count = 0;
+        attendees.forEach(cures => {
+            if (cures.includes(student)) {
+                count++;
+            }
+            ;
+        });
+        myMap.set(student, count);
+    });
+
+    const mapSort = new Map([...myMap.entries()].sort((a, b) => b[1] - a[1]));
+    for (let i = 0; i < N; i++) {
+        topNStudentsAttendees.push(Array.from(mapSort)[i][0]);
+    }
+
+    console.log(topNStudentsAttendees);
+}
+
+topNStudentsAttendees(students,attendees,3);
+
+
+
+
+
+
